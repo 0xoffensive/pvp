@@ -214,10 +214,10 @@ export async function PUT(request: NextRequest) {
           const companyUpdateFields = Object.keys(companyUpdateData).map(key => `${key} = ?`).join(', ');
           const companyUpdateValues = Object.values(companyUpdateData);
 
-          await connection.execute(
-            `UPDATE Imones SET ${companyUpdateFields} WHERE fk_Vartotojasid_Vartotojas = ?`,
-            [...companyUpdateValues, userId]
-          );
+          await connection.execute({
+            sql: `UPDATE Imones SET ${companyUpdateFields} WHERE fk_Vartotojasid_Vartotojas = ?`,
+            values: [...companyUpdateValues, userId]
+          });
         }
       }
 

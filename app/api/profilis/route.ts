@@ -190,8 +190,8 @@ export async function PUT(request: NextRequest) {
       const updateFields = Object.keys(updateData).map(key => `${key} = ?`).join(', ');
       const updateValues = Object.values(updateData);
 
-      await connection.execute(
-        `UPDATE Vartotojai SET ${updateFields} WHERE id_Vartotojas = ?`,
+      await connection.query(
+        `UPDATE vartotojai SET ${updateFields} WHERE id_Vartotojas = ?`,
         [...updateValues, userId]
       );
 
@@ -214,8 +214,8 @@ export async function PUT(request: NextRequest) {
           const companyUpdateFields = Object.keys(companyUpdateData).map(key => `${key} = ?`).join(', ');
           const companyUpdateValues = Object.values(companyUpdateData);
 
-          await connection.execute(
-            `UPDATE Imones SET ${companyUpdateFields} WHERE fk_Vartotojasid_Vartotojas = ?`,
+          await connection.query(
+            `UPDATE imones SET ${companyUpdateFields} WHERE fk_Vartotojasid_Vartotojas = ?`,
             [...companyUpdateValues, userId]
           );
         }

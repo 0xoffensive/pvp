@@ -90,7 +90,7 @@ export async function POST(request: Request) {
       messageId: result.insertId,
       chatId: fk_Pokalbisid_Pokalbis,
       senderId: userId,
-      sender: "other", // 👈 For everyone else listening, this is an "other" message
+      sender: "other",
       status: "issiusta",
       text: tekstas,
       timestamp: new Date().toISOString(),

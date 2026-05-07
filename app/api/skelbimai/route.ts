@@ -31,7 +31,6 @@ export async function GET(request: Request) {
     const params: any[] = [];
 
     if (id) {
-      // If fetching a specific listing by ID, we allow seeing it even if inactive (for the seller viewing it)
       query = `
         SELECT 
           s.*,
@@ -45,7 +44,7 @@ export async function GET(request: Request) {
           i.fk_Vartotojasid_Vartotojas as fk_Vartotojasid_Vartotojas,
           (SELECT ref FROM nuotraukos n WHERE n.fk_Skelbimasid_Skelbimas = s.id_Skelbimas LIMIT 1) as nuotrauka
         FROM skelbimai s
-        LEFT JOIN Imones i ON s.fk_Imoneid_Imone = i.id_Imone
+        LEFT JOIN imones i ON s.fk_Imoneid_Imone = i.id_Imone
         WHERE s.id_Skelbimas = ?
       `;
       params.push(parseInt(id));

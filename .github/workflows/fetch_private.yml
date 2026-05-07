@@ -1,5 +1,9 @@
 name: Fetch from private organisation
 on:
+  push:
+    branches:
+      - CI/CD
+      - master
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
